@@ -2,19 +2,12 @@
 #define COMMON_H
 
 #include "EventDispatcher.h"
+#include "sol.hpp"
+#include "base.h"
 
 using namespace Gsage;
 
 struct lua_State;
-
-class Base
-{
-public:
-  Base() {};
-  virtual ~Base() {}
-
-  virtual const char* hello() = 0;
-};
 
 class Base2 : public Base
 {
@@ -30,7 +23,7 @@ public:
   virtual ~Base3() {}
 };
 
-class Local : public Base2, public Base3, public EventDispatcher
+class Local : public Base, public EventDispatcher
 {
 public:
   Local() {};
@@ -41,11 +34,14 @@ public:
 class LuaRunner
 {
 public:
+  LuaRunner();
+  virtual ~LuaRunner();
   void run();
   void reg();
   lua_State* getState();
 private:
   lua_State* L;
+  Local obj;
 };
 
 #endif

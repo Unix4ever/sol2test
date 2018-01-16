@@ -28,23 +28,27 @@ THE SOFTWARE.
 
 #include "common.h"
 
-#include "lua.hpp"
-#include <iostream>
+#ifdef WIN32
 #include "Windows.h"
+#endif
+
 #include "library.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+#ifdef WIN32
 INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR strCmdLine, INT count)
+#else
+  int main(int argc, char** argv)
+#endif
     {
       LuaRunner runner;
       runner.reg();
       Registrar obj;
       obj.registerBindings(runner.getState());
       runner.run();
-      std::cout << "Success\n";
     }
 #ifdef __cplusplus
 }

@@ -147,8 +147,6 @@ namespace Gsage {
        */
       void fireEvent(const Event& event);
     private:
-      template<class C>
-      friend class EventSubscriber;
       /**
        * Check if dispatcher has listeners for event type
        *

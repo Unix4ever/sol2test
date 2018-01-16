@@ -22,8 +22,6 @@ class GsageConan(ConanFile):
         lua, version = str(self.options.with_lua_version).split("-")
 
         self.requires.add("{}-rocks/{}@gsage/master".format(lua, version), private=True)
-        self.requires.add("OGRE/1.9.0@gsage/master", private=True)
-        self.options["OGRE"].with_boost = False
 
     def build(self):
         cmake = CMake(self)
@@ -33,7 +31,7 @@ class GsageConan(ConanFile):
         }
 
         cmake.configure(defs=options, build_dir='build')
-        cmake.build(target='ALL_BUILD')
+        cmake.build()
 
     def imports(self):
         self.copy("*.dll", dst="build/bin", src="bin")

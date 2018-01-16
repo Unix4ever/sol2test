@@ -45,13 +45,6 @@ namespace Gsage {
     }
   }
 
-  EventConnection EventDispatcher::addEventListener(Event::ConstType eventType, EventCallback callback, const int priority)
-  {
-    if(!hasListenersForType(eventType))
-      mSignals[eventType] = new EventSignal();
-
-    return mSignals[eventType]->connect(priority, callback);
-  }
 
   bool EventDispatcher::hasListenersForType(Event::ConstType type)
   {
