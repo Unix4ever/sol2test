@@ -27,7 +27,7 @@ add_library(library SHARED src/library.cpp)
 
 target_link_libraries(common ${CONAN_LIBS_LUAJIT-ROCKS})
 
-target_link_libraries(library ${CONAN_LIBS_LUAJIT-ROCKS} common)
+target_link_libraries(library ${CONAN_LIBS_LUAJIT-ROCKS} ${CONAN_LIBS} common)
 
 target_link_libraries(runner common library ${CONAN_LIBS_LUAJIT-ROCKS})
 

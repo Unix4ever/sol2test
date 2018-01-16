@@ -22,6 +22,9 @@ class GsageConan(ConanFile):
         lua, version = str(self.options.with_lua_version).split("-")
 
         self.requires.add("{}-rocks/{}@gsage/master".format(lua, version), private=True)
+        self.requires.add("OGRE/1.9.0@gsage/master", private=True)
+        self.options["OGRE"].with_boost = self.settings.os != "Windows"
+        self.options["OGRE"].shared = self.settings.os == "Windows"
 
     def build(self):
         cmake = CMake(self)

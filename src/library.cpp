@@ -3,6 +3,7 @@
 #include "common.h"
 #include "EventDispatcher.h"
 #include <iostream>
+#include "Ogre.h"
 
 using namespace Gsage;
 
@@ -27,6 +28,8 @@ void Registrar::registerBindings(lua_State* L)
   lua.new_usertype<Library>("Library",
     sol::base_classes, sol::bases<EventDispatcher>()
   );
+
+  lua.new_usertype<Ogre::Camera>("Camera");
 
   lua["test"] = [] (EventDispatcher* b) {
     if(b == NULL) {
