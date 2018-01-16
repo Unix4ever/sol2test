@@ -26,7 +26,7 @@ void Registrar::registerBindings(lua_State* L)
 {
   sol::state_view lua(L);
   lua.new_usertype<Library>("Library",
-    sol::base_classes, sol::bases<EventDispatcher>()
+    sol::base_classes, sol::bases<Woop, EventDispatcher>()
   );
 
   lua.new_usertype<Ogre::Camera>("Camera");
