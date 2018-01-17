@@ -1,17 +1,28 @@
 #include "sol.hpp"
 #include "library.h"
 #include "common.h"
-#include "EventDispatcher.h"
 #include <iostream>
-#include "Ogre.h"
 
-using namespace Gsage;
-
-class Woop
+class LibraryBase
 {
+
 };
 
-class Library : public EventDispatcher, public Woop
+class BreakIt
+{
+public:
+  BreakIt(const std::string& parameter)
+  {
+
+  }
+
+  virtual ~BreakIt()
+  {
+
+  }
+};
+
+class Library : public Base, public LibraryBase
 {
 public:
   Library() {};
@@ -25,17 +36,19 @@ public:
 void Registrar::registerBindings(lua_State* L)
 {
   sol::state_view lua(L);
+
   lua.new_usertype<Library>("Library",
-    sol::base_classes, sol::bases<Woop, EventDispatcher>()
+    sol::base_classes, sol::bases<LibraryBase, Base>()
   );
 
-  lua.new_usertype<Ogre::Camera>("Camera");
+  lua.new_usertype<BreakIt>("BreakIt"
+  );
 
-  lua["test"] = [] (EventDispatcher* b) {
+  lua["test"] = [] (Base* b) {
     if(b == NULL) {
       std::cout << "Got NULL" << "\n";
     } else {
-      std::cout << "Got dispatcher, ok \n";
+      std::cout << "Got object, ok \n";
     }
   };
 }

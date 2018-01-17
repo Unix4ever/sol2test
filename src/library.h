@@ -3,10 +3,11 @@
 #define LIBRARY_H
 
 #include "sol.hpp"
+#include "ExportCommon.h"
 
 struct lua_State;
 
-class Registrar
+class LIBRARY_API Registrar
 {
 public:
   void registerBindings(lua_State* L);

@@ -13,6 +13,6 @@ const char* Base::hello()
   return "base";
 }
 
-void Base::shlop()
+void Base::privateMethod()
 {
 }

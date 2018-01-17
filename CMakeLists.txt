@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.1)
-set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS true)
 
 project(sol2test)
 
@@ -22,14 +21,19 @@ endif(WIN32)
 include_directories(src)
 
 add_executable(runner src/main.cpp)
-add_library(common SHARED src/common.cpp src/EventDispatcher.cpp src/base.cpp)
+add_library(common SHARED src/common.cpp src/base.cpp)
+
 add_library(library SHARED src/library.cpp)
 
 target_link_libraries(common ${CONAN_LIBS_LUAJIT-ROCKS})
 
-target_link_libraries(library ${CONAN_LIBS_LUAJIT-ROCKS} ${CONAN_LIBS} common)
+target_link_libraries(library ${CONAN_LIBS_LUAJIT-ROCKS} common)
 
 target_link_libraries(runner common library ${CONAN_LIBS_LUAJIT-ROCKS})
+
+set_target_properties(common PROPERTIES COMPILE_FLAGS "-D_EXPORT")
+
+set_target_properties(library PROPERTIES COMPILE_FLAGS "-D_EXPORT_LIBRARY")
 
 if(WIN32)
   set_target_properties(runner PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")

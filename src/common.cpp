@@ -23,7 +23,7 @@ void LuaRunner::reg()
 
   lua.new_usertype<Base>("Base");
   lua.new_usertype<Local>("Local",
-    sol::base_classes, sol::bases<Base, EventDispatcher>()
+    sol::base_classes, sol::bases<Common, Base>()
   );
 
   lua["obj"] = &obj;

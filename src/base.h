@@ -1,6 +1,9 @@
 #ifndef BASE_H
 #define BASE_H
-class Base
+
+#include "ExportCommon.h"
+
+class COMMON_API Base
 {
 public:
   Base();
@@ -8,6 +11,6 @@ public:
 
   virtual const char* hello();
 private:
-  void shlop();
+  void privateMethod();
 };
 #endif

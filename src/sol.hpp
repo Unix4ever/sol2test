@@ -40,7 +40,7 @@
 #ifdef check
 #define SOL_INSIDE_UNREAL_REMOVED_CHECK
 #undef check
-#endif 
+#endif
 #endif // Unreal Engine 4 Bullshit
 
 #ifdef __GNUC__
@@ -1194,7 +1194,7 @@ namespace sol {
 			struct is_callable : std::is_function<std::remove_pointer_t<T>> {};
 
 			template <typename T>
-			struct is_callable<T, std::enable_if_t<std::is_final<unqualified_t<T>>::value 
+			struct is_callable<T, std::enable_if_t<std::is_final<unqualified_t<T>>::value
 				&& std::is_class<unqualified_t<T>>::value
 				&&  std::is_same<decltype(void(&T::operator())), void>::value>> {
 
@@ -4485,7 +4485,7 @@ namespace sol {
 			}
 #if !defined(SOL_EXCEPTIONS_SAFE_PROPAGATION)
 			// LuaJIT cannot have the catchall when the safe propagation is on
-			// but LuaJIT will swallow all C++ errors 
+			// but LuaJIT will swallow all C++ errors
 			// if we don't at least catch std::exception ones
 			catch (...) {
 				lua_pushstring(L, "caught (...) exception");
@@ -4496,7 +4496,7 @@ namespace sol {
 		}
 
 #ifdef SOL_NOEXCEPT_FUNCTION_TYPE
-#if 0 
+#if 0
 		// impossible: g++/clang++ choke as they think this function is ambiguous:
 		// to fix, wait for template <auto X> and then switch on no-exceptness of the function
 		template <lua_CFunction_noexcept f>
@@ -4536,7 +4536,7 @@ namespace sol {
 			}
 #if !defined(SOL_EXCEPTIONS_SAFE_PROPAGATION)
 			// LuaJIT cannot have the catchall when the safe propagation is on
-			// but LuaJIT will swallow all C++ errors 
+			// but LuaJIT will swallow all C++ errors
 			// if we don't at least catch std::exception ones
 			catch (...) {
 				lua_pushstring(L, "caught (...) exception");
@@ -12251,7 +12251,7 @@ namespace sol {
 					const auto& metakey = usertype_traits<T>::metatable();
 					T* obj = detail::usertype_allocate<T>(L);
 					reference userdataref(L, -1);
-					
+
 					auto& func = std::get<I>(f.functions);
 					stack::call_into_lua<checked, clean_stack>(r, a, L, boost + start, func, detail::implicit_wrapper<T>(obj));
 
@@ -13738,7 +13738,7 @@ namespace sol {
 			}
 #if !defined(SOL_EXCEPTIONS_SAFE_PROPAGATION)
 			// LuaJIT cannot have the catchall when the safe propagation is on
-			// but LuaJIT will swallow all C++ errors 
+			// but LuaJIT will swallow all C++ errors
 			// if we don't at least catch std::exception ones
 			catch (...) {
 				onexcept("caught (...) unknown error during protected_function call");
@@ -15215,7 +15215,7 @@ namespace sol {
 			typedef meta::is_matched_lookup<T> is_matched_lookup;
 			typedef typename T::iterator iterator;
 			typedef typename T::value_type value_type;
-			typedef std::conditional_t<is_matched_lookup::value, 
+			typedef std::conditional_t<is_matched_lookup::value,
 				std::pair<value_type, value_type>,
 				std::conditional_t<is_associative::value || is_lookup::value,
 					value_type,
@@ -15736,7 +15736,7 @@ namespace sol {
 			static bool empty_start(lua_State* L, T& self) {
 				return empty_has(has_empty<T>(), L, self);
 			}
-			
+
 			static error_result erase_start(lua_State* L, T& self, K& key) {
 				return erase_has(has_erase<T>(), L, self, key);
 			}
@@ -20097,7 +20097,7 @@ namespace sol {
 
 	public:
 		using base_t::lua_state;
-		
+
 		basic_coroutine() noexcept = default;
 		basic_coroutine(const basic_coroutine&) noexcept = default;
 		basic_coroutine(basic_coroutine&&) noexcept = default;
@@ -20252,11 +20252,10 @@ namespace sol {
 #else
 #define check(expr) { CA_ASSUME(expr); }
 #endif
-#endif 
+#endif
 #endif // Unreal Engine 4 Bullshit
 
 #endif // SOL_HPP
 // end of sol.hpp
 
 #endif // SOL_SINGLE_INCLUDE_HPP
-
